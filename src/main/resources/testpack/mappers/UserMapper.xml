@@ -1,0 +1,37 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="testpack.mappers.UserMapper">
+
+    <resultMap id="user" type="testpack.dao.type.User">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="surname" property="surname" />
+    </resultMap>
+
+    <select id="getAll" resultMap="user">
+        select * from user
+    </select>
+
+    <insert id="insertUser">
+        insert into user(id, name, surname) values
+              ( #{id}, #{name}, #{surname})
+    </insert>
+
+    <delete id="deleteUser">
+        delete from user where id = #{id}
+    </delete>
+
+    <update id="updateUser">
+        update user set
+          name = #{name},
+          surname = #{surname}
+        where id = #{id}
+    </update>
+
+    <select id="getUserById" resultMap="user">
+        select * from user WHERE id=#{id}
+    </select>
+
+</mapper>
